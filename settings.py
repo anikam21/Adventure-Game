@@ -9,6 +9,5 @@ BASE_DIR = os.path.dirname(__file__)
 
 # Image Paths
 PLAYER_IMAGE = os.path.join(BASE_DIR, 'images', 'player.png')
-
-# Background Path 
-STAR_IMG = os.path.join(BASE_DIR, 'images', 'star.png')
+STAR_IMAGE = os.path.join(BASE_DIR, 'images', 'star.png')
+METEOR_IMAGE = os.path.join(BASE_DIR, 'images', 'meteor.png')

@@ -13,12 +13,17 @@ running = True
 surf = pygame.Surface((100,200))
 x = 100
 
-star = pygame.Surface((300, 200))
-
 
 # Importing an image 
 player_surf = pygame.image.load(PLAYER_IMAGE).convert_alpha()
-star_surf = pygame.image.load(STAR_IMG).convert_alpha()
+player_rect = player_surf.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
+
+star_surf = pygame.image.load(STAR_IMAGE).convert_alpha()
+star_positions = [(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)) for i in range(20)]
+
+meteor_surf = pygame.image.load(METEOR_IMAGE).convert_alpha()
+meteor_rect = meteor_surf.get_frect(center = ((WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)))
+
 
 while running:
     # event loop
@@ -28,15 +33,20 @@ while running:
             running = False
 
     # draw game      
-    display_surface.fill("darkgrey")
-    x += 0.1
-    display_surface.blit(player_surf, (x,150))
-    for _ in range(20):
-        display_surface.blit(star_surf,(randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)))
+    display_surface.fill("lightblue")
+    for pos in star_positions:
+        display_surface.blit(star_surf, pos)
+
+    if player_rect.right < WINDOW_WIDTH:
+            player_rect.left += 0.2
+    display_surface.blit(player_surf, player_rect)
+
+    
+    display_surface.blit(meteor_surf, meteor_rect)
+    
 
     # updates the full window
     pygame.display.update()
-        # Limits FPS to 60
 
 
 pygame.quit()
